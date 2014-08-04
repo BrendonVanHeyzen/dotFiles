@@ -1,0 +1,114 @@
+set colorcolumn=80
+set guifont=Menlo\ Regular:h12
+"colorscheme solarized
+set anti
+set nocp
+set noswapfile
+set nocursorline
+"hide the toolbar
+set guioptions-=T"
+"regex syntax highlighting (beta)
+set autochdir
+" Syntax highlighting on
+syntax on
+"
+"Keeps buffers alive
+" Show command
+set showcmd
+" Show current mode
+set showmode
+" Show ruler in status line
+set ruler
+" Wrap lines at line break
+set wrap
+set linebreak
+let &breakat = ' 	'
+" Show status line for all files
+set laststatus=2
+"control the height of the window info when windows are split
+set wmh=0
+" Enable filetype indent
+"filetype indent on
+set foldenable
+set foldmethod=syntax
+set foldcolumn=4
+set fillchars-=fold:-
+" Ignore case on pure lower case search patterns
+set ignorecase
+set smartcase
+" Increment search as you type search pattern
+set incsearch
+
+
+
+" To make tabs more readable, the label only contains the tail of the file
+" name and the buffer modified flag.
+set guitablabel=%M%t
+
+
+let NERDShutUp=1
+map <leader>w1 :set lines=102<CR> :set columns=314<CR>
+map <leader>bs :split<CR> :FuzzyFinderBuffer<CR>
+map <leader>be :FufBuffer<CR>
+map <leader>bf :FufFile<CR>
+map <leader>bt :FufTag<CR>
+map <leader>bp :FufTaggedFile<CR>
+map <leader>bm :FufTagWithCursorWord<CR>
+let PHP_removeCRwhenUnix = 1
+
+"nerdtree
+map <leader>nf :NERDTreeFind<CR>
+"php snippets"
+
+
+
+"This will only show the current branch
+let g:git_branch_status_head_current=1
+
+set foldtext=foldtext()
+let TE_Use_Right_Window = 1
+let g:ctags_path='/usr/bin/ctags'
+let g:ctags_title=1
+let g:ctags_statusline=1
+let generate_tags=1
+let TE_WinWidth = 30
+
+set go-=L
+noremap <silent> <C-]> :FufTagWithCursorWord!<CR>
+vnoremap <silent> <C-]> :FufBufferTagAllWithSelectedText!<CR>
+
+
+
+"Remove trailing whitespace"
+autocmd BufWritePre * :%s/\s\+$//e
+let g:Tlist_Show_One_File=0
+
+
+map zm :%foldc<CR>
+"toggle whitespace
+map <leader>di set diffopt+=iwhite<CR>
+map <leader>dI set diffopt==iwhite<CR>
+set foldcolumn=6
+
+"add highlighting for current position
+set cursorline
+set cursorcolumn
+
+set foldlevel=1
+map zm :set foldlevel=1<CR>
+let g:tagbar_ctags_bin="/opt/local/bin/ctags"
+
+let g:EclimCompletionMethod = 'omnifunc'
+
+TagHighlightSettings
+
+
+"cut and paste with clipboard
+vmap <D-c> "*y<CR>
+nmap <D-v> "+p
+cmap <D-v> <c-r>+
+imap <D-v> <ESC>"+pa
+
+let g:syntastic_check_on_open=1
+let g:syntastic_always_populate_loc_list=1
+

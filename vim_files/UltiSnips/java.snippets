@@ -1,0 +1,67 @@
+###########################################################################
+#                            TEXTMATE SNIPPETS                            #
+###########################################################################
+
+# Many of the snippets here use a global option called
+# "g:ultisnips_java_brace_style" which, if set to "nl" will put a newline
+# before '{' braces.
+
+global !p
+def nl(snip):
+    if snip.opt("g:ultisnips_java_brace_style", "") == "nl":
+        snip += ""
+    else:
+        snip.rv += " "
+endglobal
+
+snippet jtest "junit test" !b
+
+
+/**
+ * $2
+ */
+@Test
+public void test${1}()
+{
+  $3
+}
+endsnippet
+
+
+snippet jlog "selenium javascript log" !b
+js.executeScript("console.log('$1');");
+
+$2
+endsnippet
+
+snippet jse "selenium javascript execute" !b
+js.executeScript("$1");
+
+$2
+endsnippet
+
+snippet jsa "assert selenium javascript execute" !b
+assert${1:True}("$2",(${3:Boolean})js.executeScript("$4"));
+$5
+endsnippet
+
+snippet jass "Junit assert methods" !b
+assert${1:NotNull}("${2:Comment}", ${3:action} );
+endsnippet
+
+snippet doc_jm "Junit method" !b
+
+/**
+ * $2
+ *
+ * @return void
+ */
+@Test
+public void test$1 throws Exception
+{
+  $3
+}
+endsnippet
+
+
+# vim:ft=snippets:

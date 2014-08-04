@@ -1,0 +1,395 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+ "" let Vundle manage Vundle
+ "" required!
+Bundle 'gmarik/vundle'
+Bundle 'L9'
+Bundle 'fugitive.vim'
+Bundle 'FuzzyFinder'
+Bundle 'The-NERD-tree'
+Bundle 'The-NERD-Commenter'
+Bundle 'UltiSnips'
+"Bundle 'vim-dispatch'
+"Bundle 'IndexSearch'
+"Bundle 'aspnetide.vim'
+Bundle 'SuperTab-continued.'
+
+Bundle 'surround.vim'
+"Bundle 'MatchTagAlways'
+"Bundle 'jsbeautify'
+"Bundle 'YouCompleteMe'
+"Bundle 'vorax'
+
+Bundle 'https://github.com/majutsushi/tagbar.git'
+Bundle 'https://github.com/Valloric/MatchTagAlways.git'
+Bundle 'https://github.com/altercation/vim-colors-solarized.git'
+"Bundle 'https://github.com/hallettj/jslint.vim.git'
+Bundle 'Align'
+Bundle 'Syntastic'
+"Bundle 'vim-powerline'
+"Bundle 'vim-perl'
+"Bundle 'perlomni'
+"Bundle 'extradite.vim'
+"Bundle 'SuperTab-continued.'
+Bundle 'mru.vim'
+"Bundle 'Command-T'
+Bundle 'Rename2'
+"Bundle 'speeddating.vim'
+"Bundle 'taskpaper.vim'
+Bundle 'ack.vim'
+Bundle 'easytags.vim'
+"Bundle 'vim-session'
+"Bundle 'vim-startify'
+"Bundle 'zhaocai/linepower.vim'
+"Bundle 'vim-notes'
+"Bundle 'flatui.vim'
+
+
+"Bundle 'TagHighlight'
+"Bundle 'cSyntaxAfter'
+"Bundle 'javacomplete'
+"Bundle 'https://github.com/oblitum/rainbow.git'
+
+filetype plugin indent on
+set hlsearch
+set ignorecase
+syntax on
+set number
+
+"format xml
+map <leader>ft :%!xmllint --format -<CR>
+"format json
+map <leader>fj :%!python -m json.tool<CR>
+"format html
+map <leader>fh :%!tidy -q -i --show-warnings no<CR>
+
+set colorcolumn=80
+
+"git fugative mapping
+map <leader>gd :Gdiff<CR>
+map <leader>ge :Gedit<CR>
+map <leader>gs :Gstatus<CR>
+map <leader>gi :set diffopt+=iwhite<CR>
+map <leader>gI :set diffopt-=iwhite<CR>
+map <leader>nt :NERDTreeToggle<CR>
+map <leader>ga :new<CR>:setlocal filetype=diff<CR>:r !git diff<CR>
+map <leader>gc :new<CR>:setlocal filetype=diff<CR>:r !git diff --cached<CR>
+map <leader>gC :new<CR>:!cd ../<CR>:setlocal filetype=diff<CR>:r !git diff --cached<CR>
+let g:fuf_modesDisable = []
+
+nmap = <C-W>+
+nmap - <C-W>-
+"left and right"
+nmap _ <C-W><
+nmap + <C-W>>
+
+"save in normal and insert mode
+map <d-s> :w<CR>
+imap <d-s> <ESC>:w<CR>a
+"switching tabs
+map <d-}> :tabnext<CR>
+map <d-{> :tabprev<CR>
+imap <d-}> <ESC>:tabnext<CR>
+imap <d-{> <ESC>:tabprev<CR>
+
+"pasting from clipboard
+imap <D-v> <ESC>"+pa
+map <D-v> "+p
+cmap <D-v> <c-r>+
+
+"map to clear search results highlighting
+nmap <leader>f2 :let @/=""<CR>
+"Taglist call
+nmap <leader>f3 :TagbarToggle<CR>
+set ts=2
+set wildmenu
+set wildmode=list:longest,list:full
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set ff=unix
+set bs=2
+set smartindent
+set hidden
+set et
+set sw=2
+set sts=2
+set smarttab
+set updatetime=4000
+
+nmap <leader>jc :JavaCorrect<CR>
+nmap <leader>ji :JavaImport<CR>
+
+"fugative switch back to original buffer and close
+"when you do a diff on a file is splits to two buffers. this closes
+"the extra one
+map <leader>gE :Gedit<CR>:bd<CR>
+let g:UltiSnipsNoPythonWarning = 1
+let g:syntastic_javascript_jshint_conf = ""
+let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+
+" resize current buffer by +/- 5
+nnoremap <D-left> :vertical resize -5<cr>
+nnoremap <D-down> :resize +5<cr>
+nnoremap <D-up> :resize -5<cr>
+nnoremap <D-right> :vertical resize +5<cr>
+
+nnoremap <D-j> :wincmd j<cr>
+nnoremap <D-k> :wincmd k<cr>
+nnoremap <D-l> :wincmd l<cr>
+nnoremap <D-h> :wincmd h<cr>
+
+
+set guifont=Menlo\ Regular:h14
+colorscheme solarized
+set anti
+set nocp
+set noswapfile
+set nocursorline
+"hide the toolbar
+set guioptions-=T"
+"regex syntax highlighting (beta)
+set autochdir
+" Syntax highlighting on
+syntax on
+"
+"Keeps buffers alive
+" Show command
+set showcmd
+" Show current mode
+set showmode
+" Show ruler in status line
+set ruler
+" Wrap lines at line break
+set wrap
+set linebreak
+let &breakat = ' 	'
+" Show status line for all files
+set laststatus=2
+set statusline=%{fugitive#statusline()}%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%P%{SyntasticStatuslineFlag()}
+
+""set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+"set statusline=%{fugitive#statusline()}%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%{SyntasticStatuslineFlag()}
+"control the height of the window info when windows are split
+set wmh=0
+" Enable filetype indent
+"filetype indent on
+set foldenable
+set foldmethod=syntax
+set foldcolumn=4
+set foldlevel=1
+set fillchars-=fold:-
+" Ignore case on pure lower case search patterns
+set ignorecase
+set smartcase
+" Increment search as you type search pattern
+set incsearch
+
+
+"diff binds
+map <leader>dt :diffthis<CR>
+map <leader>do :diffoff!<CR>
+map <leader>du :diffupdate<CR>
+map <leader>dp :diffput<CR>
+map <leader>dg :diffget<CR>
+
+
+
+" To make tabs more readable, the label only contains the tail of the file
+" name and the buffer modified flag.
+set guitablabel=%M%t
+
+
+let NERDShutUp=1
+map <leader>w1 :set lines=102<CR> :set columns=314<CR>
+map <leader>bs :split<CR> :FuzzyFinderBuffer<CR>
+map <leader>be :FufBuffer<CR>
+map <leader>bf :FufFile<CR>
+map <D-e> :FufBuffer<CR>
+imap <D-e> <ESC>:FufBuffer<CR>
+map <leader>bt :FufTag<CR>
+map <leader>bp :FufTaggedFile<CR>
+map <leader>bm :FufTagWithCursorWord<CR>
+map <leader>mr :FufMruFile<CR>
+map <leader>mc :FufMruCmd<CR>
+
+let PHP_removeCRwhenUnix = 1
+
+"nerdtree
+map <leader>nf :NERDTreeFind<CR>
+map <leader>nb :NERDTreeFromBookmark
+"php snippets"
+
+
+
+"This will only show the current branch
+let g:git_branch_status_head_current=1
+
+set foldtext=foldtext()
+let TE_Use_Right_Window = 1
+let g:ctags_path='/usr/bin/ctags'
+let g:ctags_title=1
+let g:ctags_statusline=1
+let generate_tags=1
+let TE_WinWidth = 30
+
+set go-=L
+noremap <silent> <C-]> :FufTagWithCursorWord!<CR>
+vnoremap <silent> <C-]> :FufBufferTagAllWithSelectedText!<CR>
+
+
+
+"Remove trailing whitespace"
+autocmd BufWritePre * :%s/\s\+$//e
+let g:Tlist_Show_One_File=0
+
+
+map zm :%foldc<CR>
+"toggle whitespace
+map <leader>di set diffopt+=iwhite<CR>
+map <leader>dI set diffopt==iwhite<CR>
+"EclimDisable
+set foldcolumn=6
+
+"add highlighting for current position
+set cursorline
+set cursorcolumn
+
+
+function! GuiTabLabel()
+ "let label = ''
+ "let bufnrlist = tabpagebuflist(v:lnum)
+ "" Add '+' if one of the buffers in the tab page is modified
+ "for bufnr in bufnrlist
+   "if getbufvar(bufnr, "&modified")
+     "let label = '+'
+     "break
+   "endif
+ "endfor
+ "" Append the tab number
+ "let label .= v:lnum.': '
+ "" Append the buffer name
+ "let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
+ "if name == ''
+   "" give a name to no-name documents
+   "if &buftype=='quickfix'
+     "let name = '[Quickfix List]'
+   "else
+     "let name = '[No Name]'
+   "endif
+ "else
+   "" get only the file name
+   "let name = fnamemodify(name,":t")
+ "endif
+ "let label .= name
+ "" Append the number of windows in the tab page
+ "let wincount = tabpagewinnr(v:lnum, '$')
+ "return label . '  [' . wincount . ']'
+endfunction
+
+set guitablabel=%{GuiTabLabel()}
+let g:tagbar_ctags_bin="/opt/local/bin/ctags"
+
+au! BufRead,BufNewFile *.json set filetype=json
+
+augroup json_autocmd
+ "autocmd!
+ "autocmd FileType json set autoindent
+ "autocmd FileType json set formatoptions=tcq2l
+ "autocmd FileType json set textwidth=78 shiftwidth=2
+ "autocmd FileType json set softtabstop=2 tabstop=8
+ "autocmd FileType json set expandtab
+ "autocmd FileType json set foldmethod=syntax
+augroup END
+
+"if has("autocmd")
+ "autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
+ "autocmd Filetype java setlocal completefunc=eclim#java#complete#CodeComplete
+"endif
+
+"let g:EclimCompletionMethod = 'omnifunc'
+
+set bg=light
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+
+"map <leader>cia :Start! !killall java; /Library/Tomcat/bin/shutdown.sh; ant -find build.xml; rm -rf /Library/Tomcat/webapps/CIA*; cp ~/Documents/workspace/ATF_VAADIN2/dist/CIA.war /Library/Tomcat/webapps/; /Library/Tomcat/bin/startup.sh;
+map <leader>cia :Start! ~/Downloads/apache-tomcat-6.0.36/bin/shutdown.sh; ant -find build.xml; rm -rf ~/Downloads/apache-tomcat-6.0.36/webapps/CIA*; cp ~/Documents/workspace/ATF_VAADIN2/dist/CIA.war ~/Downloads/apache-tomcat-6.0.36/webapps/; ~/Downloads/apache-tomcat-6.0.36/bin/startup.sh<CR>
+
+"Java stuff
+autocmd Filetype javaset efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+
+map <D-1> :JavaCorrect<CR>
+map <D-O> :JavaImportOrganize<CR>
+map <leader>jh :JavaHierarchy<CR>
+map <leader>js :JavaSearch<CR>
+
+map <D-o> :FufBufferTag<CR>
+imap <D-o> <ESC>:w<CR>:FufBufferTag<CR>a
+map <leader>bo :FufBufferTagAll<CR>
+map <leader>bb :FufBufferTag<CR>
+
+autocmd Filetype java set makeprg=ant\ -find\ build.xml\ compile-cia
+
+set shell=bash\ --login
+
+"easy tags
+set updatetime=4000
+let g:easytags_python_enabled=1
+let g:easytags_updatetime_autodisable=1
+
+"
+"Syntastic
+highlight SyntasticErrorLine guibg=#2f0000
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_check_on_open=1
+let g:syntastic_always_populate_loc_list=1
+
+map <leader>je :Errors<CR>
+
+"move up down method ctrl+j (up) ctrl +k (down)
+map <C-k> [m
+map <C-j> ]m
+
+
+"build tags
+"ctags --fields=+l --c-kinds=+p --c++-kinds=+p -R --languages=java,perl --tag-relative=no .
+
+"sessions
+let g:session_directory="~/Dropbox/vim/sessions"
+
+
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['perl', 'php','javascript'],
+                           \ 'passive_filetypes': ['java'] }
+
+let g:syntastic_javascript_jslint_conf = "--nowhite"
+
+let g:ycm_filetype_blacklist = {
+      \ 'gitcommit' : 1,
+      \}
+
+let g:tagbar_type_javascript = {
+    \ 'ctagsbin' : '/usr/bin/jsctags'
+\ }
+
+set spell
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+let g:syntastic_perl_checkers=['perl']
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=0
+
+
+let g:rainbow_active = 1
